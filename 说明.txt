@@ -1,0 +1,14 @@
+|resuorces: 资源文件夹
+|---generator.properties    配置包名 生成代码路径 数据库相关
+|---table.txt               配置需要生成代码对应的数据表（一行一张表）
+
+template: 生成代码模版文件夹（谨慎修改）
+
+操作方式:
+1.打开Terminal
+2.执行命令:
+cd code-auto && java -jar generator.jar
+
+PS:
+1、稍微兼容了下有些表里有扩展字段的情况没有兼容需要自行处理！
+2、manager转换DTO和DO比较多，在DAO层统一DO交互，如果觉得麻烦可以修改template代码。
