@@ -1,52 +1,47 @@
-<#assign className = table.className>   
-<#assign classNameLower = className?uncap_first>
-<#assign tableRemarks = table.remarks>
-package ${basepackage}.dao;
+<#assign className = table.className>
+        <#assign classNameLower = className?uncap_first>
+        <#assign tableRemarks = table.remarks>
+        package ${basepackage}.dao;
 
-import org.springframework.stereotype.Repository;
 import ${basepackage}.${className}DO;
 
 import java.util.List;
 
 /**
- * @${className}Dao
- * @${tableRemarks}Dao
- * @version :
+ * ${className}DAO
+ * ${tableRemarks}DAO
  */
-@Repository
-public interface ${className}Dao {
+public interface ${className}DAO {
+
+    /**
+     * 查询List<${className}DO>
+     *
+     * @param query 筛选条件
+     * @return List<${className}DO> 结果集合
+     */
+    List<${className}DO> list(${className}Query query);
+
     /**
      * 插入${className}DO
-     * @param ${classNameLower}DO
+     *
+     * @param ${classNameLower}DO ${classNameLower}DO
      * @return 主键id
      */
     int insert(${className}DO ${classNameLower}DO);
-    /**
-     * 根据主键id删除${className}DO
-     * @param id
-     * @return 删除的行数
-     */
-    int deleteById(long id);
+
     /**
      * 根据主键id更新${className}DO
-     * @param ${classNameLower}DO
+     *
+     * @param ${classNameLower}DO ${classNameLower}DO
      * @return 更新的行数
      */
     int updateById(${className}DO ${classNameLower}DO);
+
     /**
-     * 根据主键id查询${className}DO
-     * @param id
-     * @return ${className}DO
+     * 根据主键id集合批量删除${className}DO
+     *
+     * @param idList 主键集合
+     * @return 删除的行数
      */
-    ${className}DO getOneById(long id);
-    /**
-     * 根据字段查询${className}DO
-     * @return ${className}DO
-     */
-    ${className}DO getOne(${className}DO ${classNameLower}DO);
-    /**
-     * 根据字段查询List<${className}DO>
-     * @return List<${className}DO>
-     */
-    List<${className}DO> list(${className}DO ${classNameLower}DO);
+    int deleteByIdList(@Param("idList") List<Long> idList);
 }
